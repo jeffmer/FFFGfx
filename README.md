@@ -2,7 +2,7 @@
 
 A graphics library targeted at M0 based Arduino systems such as the Arduino Zero, Adafruit Feather M0 and uChip. Currently supports ST7735 based displays (will support ILI9341).
 
-[Two Cubes](cubes2dma.gif)
+[Two Cubes - click to see](image/cubes2dma.gif)
 
 ### Flicker
 
@@ -51,7 +51,7 @@ The `Canvas` class includes the usual familiar drawing operations from the [Adaf
 
 From the code above, note that while the cube drawing canvases are updated every loop iteration, the `text` canvas is only updated every `interval` iterations. Canvases thus not only permit different parts of the display to have different colour maps, they also allow different update rates for different elements of the overall display. Consequently, we can achieve fast frame update rates on those parts of the display that need it. For example, if we only have one cube canvas, we can double the frame rate - see below:
 
-[One Cube](image/cubes1dma.gif)
+[One Cube - click to see](image/cubes1dma.gif)
 
 
 ### DMA - Direct Memory Access
