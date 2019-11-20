@@ -33,6 +33,7 @@ Demo for the buffered graphics library. Renders a 3D cube
 #include <canvas.h>
 #include <ST7735.h>
 #include <Fonts/FreeMonoBold9pt7b.h>
+#include <colors.h>
 
 // defines the colors usable in the paletted 16 color frame buffer
 const uint16_t palette[] = {
