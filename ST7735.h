@@ -1,7 +1,7 @@
 #ifndef _ST7735_H
 #define _ST7735_H
 
-#include "canbas.h"
+#include "canvas.h"
 
 class ST7735 {
     public:
