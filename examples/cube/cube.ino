@@ -35,24 +35,23 @@ Demo for the buffered graphics library. Renders a 3D cube
 #include <Fonts/FreeMonoBold9pt7b.h>
 
 // defines the colors usable in the paletted 16 color frame buffer
-const uint16_t palette[] = {ST7735_BLACK, // 0
-                      ST7735_WHITE, // 1
-                      ST7735_NAVY, // 2
-                      ST7735_DARKCYAN, // 3
-                      ST7735_DARKGREEN, // 4
-                      ST7735_MAROON, // 5
-                      ST7735_PURPLE, // 6
-                      ST7735_OLIVE, // 7
-                      ST7735_LIGHTGREY, // 8
-                      ST7735_DARKGREY, // 9
-                      ST7735_BLUE, // 10
-                      ST7735_GREEN, // 11
-                      ST7735_CYAN, // 12
-                      ST7735_RED, // 13
-                      ST7735_MAGENTA, // 14
-                      ST7735_YELLOW}; // 15
-
-
+const uint16_t palette[] = {
+                      FFFGFX_BLACK, // 0
+                      FFFGFX_WHITE, // 1
+                      FFFGFX_NAVY, // 2
+                      FFFGFX_DARKCYAN, // 3
+                      FFFGFX_DARKGREEN, // 4
+                      FFFGFX_MAROON, // 5
+                      FFFGFX_PURPLE, // 6
+                      FFFGFX_OLIVE, // 7
+                      FFFGFX_LIGHTGREY, // 8
+                      FFFGFX_DARKGREY, // 9
+                      FFFGFX_BLUE, // 10
+                      FFFGFX_GREEN, // 11
+                      FFFGFX_CYAN, // 12
+                      FFFGFX_RED, // 13
+                      FFFGFX_MAGENTA, // 14
+                      FFFGFX_YELLOW}; // 15
 
 int SCREEN_WIDTH = 80;
 int SCREEN_HEIGHT = 80;
