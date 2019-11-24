@@ -1,3 +1,8 @@
+# --- update
+
+Will be updated in the next few days to support wider range of systems and dispkays. This version is obsolete and has bugs. 
+
+
 # FFFGfx - Fast Flicker Free Graphics
 
 A graphics library targeted at M0 based Arduino systems such as the Arduino Zero, Adafruit Feather M0 and uChip. Currently supports ST7735 based displays (will support ILI9341).
