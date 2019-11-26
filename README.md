@@ -1,3 +1,6 @@
+
+# FFFGfx - Fast Flicker Free Graphics
+
 An Arduino graphics library for colour displays - currently ST7735 and ILI9341 based displays are supported - connected to systems with 16K or more RAM. The library has been tested on ESP8266, ESP32, M0, M4 and ATmega1284 boards. 
 
 ![Rotating Cube](image/M5Stack.jpg)
@@ -51,7 +54,6 @@ The `Canvas` class includes the usual familiar drawing operations from the [Adaf
 }
 
 ```
-
 ### Screen update speed
 
 From the code above, note that while the cube drawing canvases are updated every loop iteration, the `text` canvas is only updated every `interval` iterations. Canvases thus not only permit different parts of the display to have different colour maps, they also allow different update rates for different elements of the overall display. Consequently, we can achieve fast frame update rates on those parts of the display that need it. 
