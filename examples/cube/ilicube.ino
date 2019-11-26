@@ -30,11 +30,11 @@ Demo for the buffered graphics library. Renders a 3D cube
 
 /* adapted to work with Fast Flicker Free Graphics j.n.magee 19-nov-2019 */
 
-#include "fff_canvas.h"
-#include "fff_TFTSPI.h"
+#include <fff_canvas.h>
+#include <fff_TFTSPI.h>
 #include <Fonts/FreeMonoBold9pt7b.h>
-#include "fff_colors.h"
-#include "user_settings.h"
+#include <fff_colors.h>
+#include <user_settings.h>
 
 
 
