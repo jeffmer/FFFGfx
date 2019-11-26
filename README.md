@@ -1,13 +1,6 @@
-# --- update
+An Arduino graphics library for colour displays - currently ST7735 and ILI9341 based displays are supported - connected to systems with 16K or more RAM. The library has been tested on ESP8266, ESP32, M0, M4 and ATmega1284 boards. 
 
-Will be updated in the next few days to support wider range of systems and dispkays. This version is obsolete and has bugs. 
-
-
-# FFFGfx - Fast Flicker Free Graphics
-
-A graphics library targeted at M0 based Arduino systems such as the Arduino Zero, Adafruit Feather M0 and uChip. Currently supports ST7735 based displays (will support ILI9341).
-
-[Two Cubes - click to see](image/cubes2dma.gif)
+[Rotating Cube](image/M5Stack.jpg)
 
 ### Flicker
 
@@ -23,47 +16,51 @@ To reduce the storage required to store the framebuffer, again, the classic grap
 
 ### Canvas
 
-The solution adopted in FFFGfx is to allow multiple smaller framebuffers. Each framebuffer can have a different number of bits per pixel and  can have its own colour map or share an existing map. Each framebuffer can be written to a different part of the screen and they can be overlaid. The `Canvas` class implements this idea. For example the display above has an 80 by 80 `Canvas` for each rotating cube and a 120 by 30 `Canvas` for the text. These are declared as shown below:
+The solution adopted in FFFGfx is to allow multiple smaller framebuffers. Each framebuffer can have a different number of bits per pixel and  can have its own colour map or share an existing map. Each framebuffer can be written to a different part of the screen and they can be overlaid. The `Canvas` class implements this idea. For example the display above has an 200 by 200 `Canvas` for the rotating cube and a 320 (screen width) by 30 `Canvas` for the text. These are declared as shown below:
 
 ```
-Canvas canvas(80, 80, PIXELBITS4, palette);
-Canvas canvas2(80, 80, PIXELBITS4, palette);
-Canvas text(160,20, PIXELBITS1, palette);
+fff_TFTSPI screen;
+Canvas canvas(CANVAS_WIDTH, CANVAS_HEIGHT, PIXELBITS4, palette);
+Canvas text(screen.width(),20, PIXELBITS1, palette);
 ```
-The two cube canvases use 4 bits per pixel and the text canvas uses 1 bit per pixel since it only needs the colours black and white. These are the first two colours defined in the shared colour map `palette`. The RAM required for all three framebuffers is:
+The  cube canvas uses 4 bits per pixel and the text canvas uses 1 bit per pixel since it only needs the colours black and white. These are the first two colours defined in the shared colour map `palette`. The RAM required for the two framebuffers is:
 
 ```
-(80 * 80)/2 + (80 * 80)/2 + (120 * 20)/8 = 3200 + 3200 + 300
-                                         = 6700 bytes
+(200 * 200)/2 + (120 * 20)/8 = 20000 + 300
+                             = 20300 bytes                        
+                            
 ```
+This compares with a full 4-bit framebuffer for a 320x240 display which would require 38400 bytes which would exceed the 32K memory of the Adafruit Feather M0'.
+
 The `Canvas` class includes the usual familiar drawing operations from the [Adafruit GFX LIbrary](https://github.com/adafruit/Adafruit-GFX-Library) library. The code from the example which draws to the `text` canvas is shown below:
 
 ```
- counter++;
+ void loop() {
+  drawCube();
+  counter++;
   // only calculate the fps every <interval> iterations.
   if (counter % interval == 0) {
     long millisSinceUpdate = millis() - startMillis;
-    fps = String(interval * 1000.0 / (millisSinceUpdate)) + "fps (dma)";
+    fps = String(interval * 1000.0 / (millisSinceUpdate)) + "fps " + _FFF_CPU_NAME;
     startMillis = millis();
-    text.setColor(1);  // White
+    text.setColor(1);
     text.setXY(10,12);
     text.print(fps);
-    screen.paint(0,100,text); // draws canvas on the screen
+    screen.paint(4,screen.height()-21,&text);
   }
+}
+
 ```
 
 ### Screen update speed
 
-From the code above, note that while the cube drawing canvases are updated every loop iteration, the `text` canvas is only updated every `interval` iterations. Canvases thus not only permit different parts of the display to have different colour maps, they also allow different update rates for different elements of the overall display. Consequently, we can achieve fast frame update rates on those parts of the display that need it. For example, if we only have one cube canvas, we can double the frame rate - see below:
-
-[One Cube - click to see](image/cubes1dma.gif)
+From the code above, note that while the cube drawing canvases are updated every loop iteration, the `text` canvas is only updated every `interval` iterations. Canvases thus not only permit different parts of the display to have different colour maps, they also allow different update rates for different elements of the overall display. Consequently, we can achieve fast frame update rates on those parts of the display that need it. 
 
 
-### DMA - Direct Memory Access
 
+### Screen driver efficiency
 
 
 
 
 
-	
