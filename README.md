@@ -1,6 +1,6 @@
 An Arduino graphics library for colour displays - currently ST7735 and ILI9341 based displays are supported - connected to systems with 16K or more RAM. The library has been tested on ESP8266, ESP32, M0, M4 and ATmega1284 boards. 
 
-[Rotating Cube](image/M5Stack.jpg)
+![Rotating Cube](image/M5Stack.jpg)
 
 ### Flicker
 
