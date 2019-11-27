@@ -42,20 +42,18 @@ This compares with a full 4-bit framebuffer for a 320x240 display which would re
 The `Canvas` class includes the usual familiar drawing operations from the [Adafruit GFX LIbrary](https://github.com/adafruit/Adafruit-GFX-Library) library. The code from the example which draws to the `text` canvas is shown below:
 
 ```
- void loop() {
-  drawCube();
-  counter++;
+ counter++;
   // only calculate the fps every <interval> iterations.
   if (counter % interval == 0) {
-    long millisSinceUpdate = millis() - startMillis;
-    fps = String(interval * 1000.0 / (millisSinceUpdate)) + "fps " + _FFF_CPU_NAME;
-    startMillis = millis();
     text.setColor(1);
     text.setXY(10,12);
-    text.print(fps);
+    long millisSinceUpdate = millis() - startMillis;     
+    startMillis = millis();
+    text.print(interval * 1000.0 / (millisSinceUpdate),2);
+    text.print(" fps ");
+    text.print(_FFF_CPU_NAME);   
     screen.paint(4,screen.height()-21,&text);
   }
-}
 
 ```
 ### Screen update speed
