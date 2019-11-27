@@ -58,7 +58,7 @@ The `Canvas` class includes the usual familiar drawing operations from the [Adaf
 
 From the code above, note that while the cube drawing canvases are updated every loop iteration, the `text` canvas is only updated every `interval` iterations. Canvases thus not only permit different parts of the display to have different colour maps, they also allow different update rates for different elements of the overall display. Consequently, we can achieve fast frame update rates on those parts of the display that need it. 
 
-
+![Wire Cube](image/wirecube.jpg)
 
 ### Screen driver efficiency
 
