@@ -19,18 +19,22 @@ To reduce the storage required to store the framebuffer, again, the classic grap
 
 ### Canvas
 
-The solution adopted in FFFGfx is to allow multiple smaller framebuffers. Each framebuffer can have a different number of bits per pixel and  can have its own colour map or share an existing map. Each framebuffer can be written to a different part of the screen and they can be overlaid. The `Canvas` class implements this idea. For example the display above has an 200 by 200 `Canvas` for the rotating cube and a 320 (screen width) by 30 `Canvas` for the text. These are declared as shown below:
+The solution adopted in FFFGfx is to allow multiple smaller framebuffers. Each framebuffer can have a different number of bits per pixel and  can have its own colour map or share an existing map. Each framebuffer can be written to a different part of the screen and they can be overlaid. The `Canvas` class implements this idea. For example the display above has two 144 by 144 `Canvas`es for the rotating cubes and a 320 (screen width) by 30 `Canvas` for the text. These are declared as shown below:
 
 ```
+const int CANVAS_WIDTH = 144;
+const int CANVAS_HEIGHT = 144;
+
 fff_TFTSPI screen;
-Canvas canvas(CANVAS_WIDTH, CANVAS_HEIGHT, PIXELBITS4, palette);
+Canvas canvas1(CANVAS_WIDTH, CANVAS_HEIGHT, PIXELBITS1, palette);
+Canvas canvas2(CANVAS_WIDTH, CANVAS_HEIGHT, PIXELBITS4, palette);
 Canvas text(screen.width(),20, PIXELBITS1, palette);
 ```
-The  cube canvas uses 4 bits per pixel and the text canvas uses 1 bit per pixel since it only needs the colours black and white. These are the first two colours defined in the shared colour map `palette`. The RAM required for the two framebuffers is:
+Canvas2 uses 4 bits per pixel for thee colour rendered cube, however both canvas2  for the wire cube and the text canvas use 1 bit per pixel since they only needthe colours black and white. These are the first two colours defined in the shared colour map `palette`. The RAM required for the three framebuffers is:
 
 ```
-(200 * 200)/2 + (120 * 20)/8 = 20000 + 300
-                             = 20300 bytes                        
+(144 * 144)/2 + (144 * 144)/8 +(120 * 20)/8 = 10368 + 2592 + 300
+                                            = 13260 bytes                        
                             
 ```
 This compares with a full 4-bit framebuffer for a 320x240 display which would require 38400 bytes which would exceed the 32K memory of the Adafruit Feather M0'.
