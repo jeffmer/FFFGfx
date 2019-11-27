@@ -1,8 +1,9 @@
-#include "fff_canvas.h"
-#include "fff_TFTSPI.h"
+
+#include <fff_canvas.h>
+#include <fff_TFTSPI.h>
 #include <Fonts/FreeMonoBold9pt7b.h>
-#include "fff_colors.h"
-#include "user_settings.h"
+#include <fff_colors.h>
+#include <user_settings.h>
 
 // defines the colors usable in the paletted 16 color frame buffer
 const uint16_t palette[] = {
@@ -170,7 +171,7 @@ void setup() {
 }
 
 float const incr = PI/90; // 2 degrees per interation
-float r = 0;
+float r = 0;//
 
 char pbuf[10];
 
@@ -193,7 +194,7 @@ void loop() {
     text.setXY(10,12);
     long millisSinceUpdate = millis() - startMillis;     
     startMillis = millis();
-    text.print(dtostrf(interval * 1000.0 / (millisSinceUpdate),4,1,pbuf ));
+    text.print(interval * 1000.0 / (millisSinceUpdate),2);
     text.print(" fps ");
     text.print(_FFF_CPU_NAME);   
     screen.paint(4,screen.height()-21,&text);
