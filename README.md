@@ -33,8 +33,8 @@ Canvas text(screen.width(),20, PIXELBITS1, palette);
 Canvas2 uses 4 bits per pixel for thee colour rendered cube, however both canvas2  for the wire cube and the text canvas use 1 bit per pixel since they only needthe colours black and white. These are the first two colours defined in the shared colour map `palette`. The RAM required for the three framebuffers is:
 
 ```
-(144 * 144)/2 + (144 * 144)/8 +(120 * 20)/8 = 10368 + 2592 + 300
-                                            = 13260 bytes                        
+(144 * 144)/2 + (144 * 144)/8 +(320 * 20)/8 = 10368 + 2592 + 800
+                                            = 13760 bytes                        
                             
 ```
 This compares with a full 4-bit framebuffer for a 320x240 display which would require 38400 bytes which would exceed the 32K memory of the Adafruit Feather M0'.
