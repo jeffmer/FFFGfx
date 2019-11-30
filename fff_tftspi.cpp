@@ -151,7 +151,7 @@ static void initCommands(const uint8_t *addr){
     }
 }
 
-void fff_TFTSPI::init() {
+void fff_TFTSPI::init(uint16_t background) {
     pinMode(_CS, OUTPUT);
     pinMode(_DC, OUTPUT);
 #ifdef _RESET
@@ -174,7 +174,7 @@ void fff_TFTSPI::init() {
 #ifdef USE_DMA_FOR_M0
     dma_setup();
 #endif      
-    clear();         
+    clear(background);         
 }
 
 
@@ -192,7 +192,7 @@ void fff_TFTSPI::off() {
   digitalWrite(_CS, HIGH);                            
 }
 
-void fff_TFTSPI::clear() {
+void fff_TFTSPI::clear(uint16_t background) {
   SPI.beginTransaction(settings); 
   digitalWrite(_CS, LOW);
   const int maxX = _XOFF + _XSIZE - 1;
@@ -201,16 +201,16 @@ void fff_TFTSPI::clear() {
   Command4(RASET, 0, _XOFF, maxX>>8, maxX);
   Command(RAMWR);
   #ifdef USE_DMA_FOR_M0
-  for (int j=0; j<_YSIZE; j++) dbuf[0][j] = 0;
+  for (int j=0; j<_YSIZE; j++) dbuf[0][j] = background>>8 | background<< 8;
   for (int i=0; i<=_XSIZE; i++) do_dma(0, _YSIZE*2);
   while(theDMA.isActive()) ; // finish last dma
   #elif defined _SPI_WRITEBYTES_
-  for (int j=0; j<_YSIZE; j++) _buf[0] = 0;
+  for (int j=0; j<_YSIZE; j++) _buf[j] = background>>8 | background<< 8;
   for (int i=0; i<=_XSIZE; i++) SPI.writeBytes((byte *)&_buf, _YSIZE*2);
   #else 
   for (int i=0; i<_XSIZE; i++) {
     for (int j=0; j<_YSIZE; j++) {
-      SPI.transfer16(0);
+      SPI.transfer16(background>>8 | background<< 8);
     }
   } 
   #endif
