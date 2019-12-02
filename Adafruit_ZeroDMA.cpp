@@ -1,3 +1,5 @@
+#include "user_settings.h"
+#ifdef USE_DMA_FOR_M0
 #include <Adafruit_ZeroDMA.h>
 #include <malloc.h> // memalign() function
 
@@ -660,3 +662,5 @@ void Adafruit_ZeroDMA::printStatus(ZeroDMAstatus s) {
 bool Adafruit_ZeroDMA::isActive(){
     return _writeback[channel].BTCTRL.bit.VALID;
 }
+
+#endif
