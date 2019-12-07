@@ -40,6 +40,7 @@ Canvas::~Canvas(){
 
 
 void Canvas::drawPixel(int x, int y) {
+  if (x < 0 || y < 0) return;
   if (x >= _width || y >= _height) return;
   int addr = (y*_width +x);
   uint8_t pos;
