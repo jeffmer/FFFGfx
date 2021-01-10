@@ -4,7 +4,7 @@
 // Displays - uncomment the one you want to use
 
 //#define IS_ILI9341
-//#define IS_ST7735
+#define IS_ST7735
 
 
 #ifdef IS_ST7735
@@ -13,13 +13,13 @@
 //int const _YSIZE = 80, _XSIZE = 160, _YOFF = 24, _XOFF = 0, _INVERT = 0, _ROTATE = 0;
 
 //AliExpress 0.96" 80x160 display
-static int const _YSIZE = 80, _XSIZE = 160, _YOFF = 26, _XOFF = 1, _INVERT = 1, _ROTATE = 2;
+//static int const _YSIZE = 80, _XSIZE = 160, _YOFF = 26, _XOFF = 1, _INVERT = 1, _ROTATE = 2;
 
 // Adafruit 1.44" 128x128 display
 //static int const _YSIZE = 128, _XSIZE = 128, _YOFF = 3, _XOFF = 2, _INVERT = 0, _ROTATE = 5;
 
 // Adafruit 1.8" 128x160 display LANDSCAPE
-//static int const _YSIZE = 128, _XSIZE = 160, _YOFF = 0, _XOFF = 0, _INVERT = 0, _ROTATE = 2;
+static int const _YSIZE = 128, _XSIZE = 160, _YOFF = 0, _XOFF = 0, _INVERT = 0, _ROTATE = 2;
 
 // Adafruit 1.8" 128x160 display PORTRAIT
 //static int const _YSIZE = 160, _XSIZE = 128, _YOFF = 0, _XOFF = 0, _INVERT = 0, _ROTATE = 1;
@@ -42,10 +42,10 @@ static int const _YSIZE = 80, _XSIZE = 160, _YOFF = 26, _XOFF = 1, _INVERT = 1, 
 
 //processor board definitions - select one
 //#define _ATMEGA1284_
-//#define _UCHIP_
+#define _UCHIP_
 //#define _FEATHER_M0_
 //#define _FEATHER_M4_
-#define _NODEMCU_ESP8266_
+//#define _NODEMCU_ESP8266_
 //#define _M5STACK_
 //#define _TTGO_ESP32_WROVER_
 
